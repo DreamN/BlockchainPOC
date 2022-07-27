@@ -16,7 +16,7 @@ function enableOperationButtons(){
 }
 
 function checkWalletAddress(){
-    web3.eth.sign("Hello", web3.eth.defaultAccount, async (err, signature) => {
-        console.log(signature);
-    });
+    let walletAddressValueText = document.getElementById(wallet-address-value);
+    ethereum.request({method: "eth_requestAccounts"}).then(addr => walletAddressValueText.innerHTML = addr);
+
 }
