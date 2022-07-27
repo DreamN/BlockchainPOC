@@ -1,22 +1,25 @@
 let loaded = false;
 let web3 = null;    
 
-function loadConfig(){
-    let infuraApiKey = document.getElementById('infura-api-key').value;
-    let infuraUrl = `https://mainnet.infura.io/v3/${infuraApiKey}`;
-    web3 = new Web3(new Web3.providers.HttpProvider(infuraUrl));
-    console.log(infuraUrl)
+async function connectAccount(){
+    if (window.ethereum) {
+        await window.ethereum.request({method: 'eth_requestAccounts'}).then(addr => updateAccountAddress(addr));
+        window.web3 = new Web3(window.ethereum);
+        console.log("Success!");
+    }
+    else {
+        console.log("There's no metamask installed on this browser");
+    }
+    
     loaded = true;
     enableOperationButtons();
+    updateAccountAddress();
 }
 
 function enableOperationButtons(){
-    let checkWalletAddressButton = document.getElementById('checkWalletAddressButton');
-    checkWalletAddressButton.disabled = false;
 }
 
-function checkWalletAddress(){
-    let walletAddressValueText = document.getElementById(wallet-address-value);
-    ethereum.request({method: "eth_requestAccounts"}).then(addr => walletAddressValueText.innerHTML = addr);
-
+function updateAccountAddress(addrs){
+    let walletAddressValueText = document.getElementById("wallet-address-value");
+    walletAddressValueText.innerHTML = addrs.join(",");
 }

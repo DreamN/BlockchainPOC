@@ -46,10 +46,13 @@
           </a>
 
           <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-            <!-- <a class="me-3 py-2 text-dark text-decoration-none" href="#">Features</a>
-            <a class="me-3 py-2 text-dark text-decoration-none" href="#">Enterprise</a>
-            <a class="me-3 py-2 text-dark text-decoration-none" href="#">Support</a>
-            <a class="py-2 text-dark text-decoration-none" href="#">Pricing</a> -->
+            <!-- <a class="me-3 py-2 text-dark text-decoration-none" href="#">Features</a> -->
+            <!-- <a class="me-3 py-2 text-dark text-decoration-none" href="#">Enterprise</a> -->
+            <!-- <a class="me-3 py-2 text-dark text-decoration-none" href="#">Support</a> -->
+            <!-- <a class="py-2 text-dark text-decoration-none" href="#">Pricing</a> -->
+            <button type="button" class="btn btn-primary" onclick="connectAccount();">
+              Connect!
+            </button>
           </nav>
         </div>
       </header>
@@ -59,27 +62,10 @@
           <!-- <h1 class="display-4 fw-normal">Pricing</h1> -->
           <!-- <p class="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p> -->
           <div class="card">
-            <h5 class="card-header">Configuration</h5>
+            <h5 class="card-header">Basic Details</h5>
             <div class="card-body">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon3">Infura API Key</span>
-                <input type="text" class="form-control" id="infura-api-key" aria-describedby="basic-addon3">
-                <a href="#" class="btn btn-primary" onclick="loadConfig();">Load!</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-          <!-- <h1 class="display-4 fw-normal">Pricing</h1> -->
-          <!-- <p class="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p> -->
-          <div class="card">
-            <h5 class="card-header">Check wallet address</h5>
-            <div class="card-body">
-              <h5 class="card-title">My Wallet Address is ...</h5>
-              <p class="card-text" id="wallet-address-value">0x0000000000000000000000000000000000000000</p>
-              <button type="button" class="btn btn-primary" onclick="checkWalletAddress();" id="checkWalletAddressButton" disabled>
-                Check!
-              </button>
+              <h5 class="card-title">My Wallet Addresses are ...</h5>
+              <p class="card-text" id="wallet-address-value"></p>
             </div>
           </div>
         </div>
@@ -87,6 +73,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-    <script src="./crypto.js"></script>
+    <script src="/crypto.js"></script>
   </body>
 </html>
