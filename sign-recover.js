@@ -4,6 +4,8 @@ let account = null;
 
 let walletAddressesSelect = document.getElementById("wallet-addresses-select");
 
+let requireConnectWarning = document.getElementById("require-connect-warning");
+
 let signText = document.getElementById("sign-text");
 let signSignature = document.getElementById("sign-signature");
 let signButton = document.getElementById("sign-button");
@@ -31,6 +33,7 @@ async function connectAccount(){
 function enableOperationButtons(){
     signText.disabled = false;
     signButton.disabled = false;
+    requireConnectWarning.style.display = "none";
     // recoverText.disabled = false;
     // recoverSignature.disabled = false;
     // recoverButton.disabled = false;
