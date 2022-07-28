@@ -3,14 +3,14 @@ let nftCreatorFilterText = document.getElementById("nft-creator-filter-text");
 let nftQueryResultDiv = document.getElementById("nft-query-result");
 
 
-function nftQuery(){
-    queryNft().then(function(queryResult){
+nftQuery = () => {
+    queryNft().then(queryResult => {
         displayQueryResult(queryResult);
     });
 }
 
-function displayQueryResult(assets){
-    let resultHtmls = assets.map(function(asset){
+displayQueryResult = (assets) => {
+    let resultHtmls = assets.map(asset => {
         return `
             <div class="col">
                 <div class="card">
@@ -26,7 +26,7 @@ function displayQueryResult(assets){
 }
 
 
-async function queryNft(){
+queryNft = async() => {
     let ownerAddress = nftOwnerAddressText.value;
     let creatorAddress = nftCreatorFilterText.value;
     console.log(`[NFT Query] Owner: [${ownerAddress}], Creator: [${creatorAddress}]`);
@@ -39,7 +39,7 @@ async function queryNft(){
     return filteredJsonResult;
 }
 
-async function makeApiCall(ownerAddress){
+makeApiCall = async(ownerAddress) => {
     let url = `https://api.opensea.io/api/v1/assets?format=json&owner=${ownerAddress}`;
     let response = await fetch(url);
     let jsonResult = await response.json();

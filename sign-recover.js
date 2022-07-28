@@ -15,7 +15,7 @@ let recoverSignature = document.getElementById("recover-signature");
 let recoverButton = document.getElementById("recover-button");
 let recoverAddress = document.getElementById("recover-address");
 
-async function connectAccount(){
+connectAccount = async() => {
     if (window.ethereum) {
         await window.ethereum.request({method: 'eth_requestAccounts'});
         web3 = new Web3(window.ethereum);
@@ -30,29 +30,26 @@ async function connectAccount(){
     enableOperationButtons();
 }
 
-function enableOperationButtons(){
+enableOperationButtons = () => {
     signText.disabled = false;
     signButton.disabled = false;
     requireConnectWarning.style.display = "none";
-    // recoverText.disabled = false;
-    // recoverSignature.disabled = false;
-    // recoverButton.disabled = false;
 }
 
-function updateAccountDetails(){
-    web3.eth.getAccounts().then(function(accounts){
+updateAccountDetails = () => {
+    web3.eth.getAccounts().then(accounts => {
         this.accounts = accounts;
         updateAccountAddress(accounts)
     });
 }
 
-function cleanWalletAddressSelect(walletAddressesSelect){
+cleanWalletAddressSelect = (walletAddressesSelect) => {
     while (walletAddressesSelect.options.length) {
         walletAddressesSelect.remove(0);
     }
 }
 
-function updateAccountAddress(addresses){
+updateAccountAddress = (addresses) => {
     cleanWalletAddressSelect(walletAddressesSelect);
     for(var i = 0, l = addresses.length; i < l; i++){
         let walletAddress = addresses[i];
@@ -63,14 +60,14 @@ function updateAccountAddress(addresses){
     }
 }
 
-function sign(){
+sign = () => {
     let inputText = signText.value;
     let from = this.accounts[0];
     var sha3InputText = web3.utils.sha3(inputText);
     console.log(`[Sign] from: [${from}], message: [${inputText}]`);
-    web3.eth.personal.sign(sha3InputText, from, "", function (err, signature) {
+    web3.eth.personal.sign(sha3InputText, from, "", (err, signature) => {
         if(err){
-            console.log(`[Sign] error: ${err.inputText}`);
+            console.log(`[Sign] error: ${err.message}`);
             return;
         }
         console.log(`[Sign] Signature: [${signature}]`);
@@ -78,12 +75,12 @@ function sign(){
     });
 }
 
-function recover(){
+recover = () => {
     let inputText = recoverText.value;
     let inputSignature = recoverSignature.value;
     var sha3InputText = web3.utils.sha3(inputText);
     console.log(`[Recover] Input text: [${inputText}], text(SHA-3) [${sha3InputText}], signature: [${inputSignature}]`);
-    web3.eth.personal.ecRecover(sha3InputText, inputSignature).then(function(address){
+    web3.eth.personal.ecRecover(sha3InputText, inputSignature).then(address => {
 
         console.log(`[Recover] Output address: [${address}]`);
         recoverAddress.value = address;
