@@ -31,9 +31,9 @@ async function connectAccount(){
 function enableOperationButtons(){
     signText.disabled = false;
     signButton.disabled = false;
-    recoverText.disabled = false;
-    recoverSignature.disabled = false;
-    recoverButton.disabled = false;
+    // recoverText.disabled = false;
+    // recoverSignature.disabled = false;
+    // recoverButton.disabled = false;
 }
 
 function updateAccountDetails(){
@@ -81,6 +81,7 @@ function recover(){
     var sha3InputText = web3.utils.sha3(inputText);
     console.log(`[Recover] Input text: [${inputText}], text(SHA-3) [${sha3InputText}], signature: [${inputSignature}]`);
     web3.eth.personal.ecRecover(sha3InputText, inputSignature).then(function(address){
+
         console.log(`[Recover] Output address: [${address}]`);
         recoverAddress.value = address;
     });
