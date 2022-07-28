@@ -73,7 +73,7 @@
               <button class="nav-link active" id="sign_recover-tab" data-bs-toggle="tab" data-bs-target="#sign_recover-tab-pane" type="button" role="tab" aria-controls="sign_recover-tab-pane" aria-selected="true">Sign & Recover</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="nft_filter-tab" data-bs-toggle="tab" data-bs-target="#nft_filter-tab-pane" type="button" role="tab" aria-controls="nft_filter-tab-pane" aria-selected="false">NFT Filter</button>
+              <button class="nav-link" id="nft_query-tab" data-bs-toggle="tab" data-bs-target="#nft_query-tab-pane" type="button" role="tab" aria-controls="nft_filter-tab-pane" aria-selected="false">NFT Query (via OpenSea API)</button>
             </li>
           </ul>
           <div class="tab-content">
@@ -121,8 +121,30 @@
               </div>
               <!-- End: Sign and Recover Content -->
             </div>
-            <div class="tab-pane fade" id="nft_filter-tab-pane" role="tabpanel" aria-labelledby="nft_filter-tab" tabindex="0">
+            <div class="tab-pane fade" id="nft_query-tab-pane" role="tabpanel" aria-labelledby="nft_query-tab" tabindex="0">
               <!-- NFT filter Content -->
+              <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+                <div class="card">
+                  <h5 class="card-header">NFT Query</h5>
+                  <div class="card-body">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="addon-wrapping" disabled>Owner Address</span>
+                      <input type="text" class="form-control" placeholder="0x0000000000000000000000000000000000000000" aria-describedby="addon-wrapping" id="nft-owner-address-text">
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="addon-wrapping" disabled>NFT Creator (Optional)</span>
+                      <input type="text" class="form-control" placeholder="0x0000000000000000000000000000000000000000" aria-describedby="addon-wrapping" id="nft-creator-filter-text">
+                    </div>
+                    <button type="button" class="btn btn-outline-primary" id="nft-query-button" onclick="nftQuery();">Query</button>
+                  </div>
+                  <div class="card-footer">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="addon-wrapping" disabled>Address</span>
+                      <input type="text" class="form-control" aria-describedby="addon-wrapping" id="recover-address" value="0x0000000000000000000000000000000000000000" disabled>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <!-- End: filter Content -->
             </div>
           </div>
