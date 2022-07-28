@@ -2,20 +2,26 @@ let connected = false;
 let web3 = null;    
 let account = null;
 
-let signText = document.getElementById("sign-text");
-let signButton = document.getElementById("signButton");
 let walletAddressesSelect = document.getElementById("wallet-addresses-select");
-let signatureTextArea = document.getElementById("signature-text");
+
+let signText = document.getElementById("sign-text");
+let signSignature = document.getElementById("sign-signature");
+let signButton = document.getElementById("sign-button");
+
+let recoverText = document.getElementById("recover-text");
+let recoverSignature = document.getElementById("recover-signature");
+let recoverButton = document.getElementById("recover-button");
+let recoverAddress = document.getElementById("recover-address");
 
 async function connectAccount(){
     if (window.ethereum) {
         await window.ethereum.request({method: 'eth_requestAccounts'});
         web3 = new Web3(window.ethereum);
-        console.log("Connecting to the wallet successfully!");
+        console.log("[Connect] Connecting to the wallet successfully!");
         updateAccountDetails();
     }
     else {
-        console.log("There's no metamask installed on this browser");
+        console.log("[Connect] There's no metamask installed on this browser");
     }
     
     connected = true;
@@ -25,6 +31,9 @@ async function connectAccount(){
 function enableOperationButtons(){
     signText.disabled = false;
     signButton.disabled = false;
+    recoverText.disabled = false;
+    recoverSignature.disabled = false;
+    recoverButton.disabled = false;
 }
 
 function updateAccountDetails(){
@@ -44,7 +53,6 @@ function updateAccountAddress(addresses){
     cleanWalletAddressSelect(walletAddressesSelect);
     for(var i = 0, l = addresses.length; i < l; i++){
         let walletAddress = addresses[i];
-        console.log(`Hi ${walletAddress}`);
         walletAddressesSelect.options.add( new Option(walletAddress, walletAddress) );
     }
     if(walletAddressesSelect.options.length > 0){
@@ -53,16 +61,27 @@ function updateAccountAddress(addresses){
 }
 
 function sign(){
-    let message = signText.value;
+    let inputText = signText.value;
     let from = this.accounts[0];
-    var sha3Message = web3.utils.sha3(message);
-    console.log(`Sign from: [${from}], message: [${message}]`);
-    web3.eth.sign(sha3Message, web3.utils.toChecksumAddress(from), function (err, signature) {
+    var sha3InputText = web3.utils.sha3(inputText);
+    console.log(`[Sign] from: [${from}], message: [${inputText}]`);
+    web3.eth.personal.sign(sha3InputText, from, "", function (err, signature) {
         if(err){
-            console.log(`Sign error: ${err.message}`);
+            console.log(`[Sign] error: ${err.inputText}`);
             return;
         }
-        console.log(`Signature: [${signature}]`);
-        signatureTextArea.innerHTML = signature;
+        console.log(`[Sign] Signature: [${signature}]`);
+        signSignature.innerHTML = signature;
+    });
+}
+
+function recover(){
+    let inputText = recoverText.value;
+    let inputSignature = recoverSignature.value;
+    var sha3InputText = web3.utils.sha3(inputText);
+    console.log(`[Recover] Input text: [${inputText}], text(SHA-3) [${sha3InputText}], signature: [${inputSignature}]`);
+    web3.eth.personal.ecRecover(sha3InputText, inputSignature).then(function(address){
+        console.log(`[Recover] Output address: [${address}]`);
+        recoverAddress.value = address;
     });
 }

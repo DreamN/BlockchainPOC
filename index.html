@@ -67,15 +67,40 @@
         </div>
         <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
           <div class="card">
-            <h5 class="card-header">Signing</h5>
+            <h5 class="card-header">Sign</h5>
             <div class="card-body">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Sign text" aria-label="Sign text" aria-describedby="button-addon2" id="sign-text" disabled>
-                <button class="btn btn-outline-primary" type="button" id="signButton" onclick="sign();" disabled>Sign</button>
+              <div class="input-group">
+                <span class="input-group-text" id="addon-wrapping">Input Text</span>
+                <input type="text" class="form-control" placeholder="foo" id="sign-text" disabled>
+                <button class="btn btn-outline-primary" type="button" id="sign-button" onclick="sign();" disabled>Sign</button>
               </div>
+            </div>
+            <div class="card-footer">
               <div class="input-group">
                 <span class="input-group-text">Signature</span>
-                <textarea class="form-control" aria-label="With textarea" id="signature-text" disabled></textarea>
+                <textarea class="form-control" aria-label="With textarea" id="sign-signature" disabled></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+          <div class="card">
+            <h5 class="card-header">Recover </h5>
+            <div class="card-body">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping" id="recover-text" disabled>Input Text</span>
+                <input type="text" class="form-control" placeholder="foo" aria-describedby="addon-wrapping" id="recover-text" disabled>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" disabled>Signature</span>
+                <textarea class="form-control" aria-label="With textarea" id="recover-signature" disabled></textarea>
+              </div>
+              <button type="button" class="btn btn-outline-primary" id="recover-button" onclick="recover();" disabled>Recover</button>
+            </div>
+            <div class="card-footer">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping" disabled>Address</span>
+                <input type="text" class="form-control" aria-describedby="addon-wrapping" id="recover-address" value="0x0000000000000000000000000000000000000000" disabled>
               </div>
             </div>
           </div>
